@@ -40,7 +40,7 @@ Add your favorite package to Buildbm
 
 Create package directory in packages. (like ./packages/foobar-pkg/)
 
-Add BMconfig and package.py in your package direcotry.
+Add 'BMconfig' and 'package.py' in your package direcotry.
 and add the 'BMconfig' path to packages/BMconfig.
 
 'BMconfig' defines config flags for your package,
