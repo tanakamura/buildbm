@@ -17,10 +17,13 @@ Create your toolchain config to toolchain directory.
 And modify toolchain/Kconfig to use your toolchain.
 
 Customize system config for your convinient.
+
     $ menuconfig
+
 (menuconfig command is included in Kconfiglib)
 
 Go!
+
     $ scons
 
 This SConstruct generates 'build/<target>/libbuildbm.a'.
