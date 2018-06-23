@@ -1,0 +1,12 @@
+menu "Interpreters"
+     source "packages/python/BMconfig"
+endmenu
+
+menu "System"
+     source "packages/acpica/BMconfig"
+endmenu
+
+menu "Lib"
+     source "packages/zlib/BMconfig"
+endmenu
+

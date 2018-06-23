@@ -1,0 +1,4 @@
+config BBM_PACKAGE_ACPICA
+       bool "ACPICA"
+       default n
+

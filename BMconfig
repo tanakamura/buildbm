@@ -1,0 +1,13 @@
+menu "About your system"
+     source "BMconfig.yoursystem"
+endmenu
+
+menu "Toolchain"
+     source "toolchain/BMconfig"
+endmenu
+
+menu "Packages"
+     source "packages/BMconfig"
+endmenu
+
+

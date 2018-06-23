@@ -1,0 +1,5 @@
+config BBM_YOURSYSTEM_HAS_POSIX
+       depends on BBM_TOOLCHAIN_HAS_LIBC
+
+       bool "Your system has POSIX compatible API"
+       default n

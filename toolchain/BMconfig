@@ -1,0 +1,99 @@
+choice
+        prompt "Toolchain type"
+        help
+          Select your toolchain.
+
+config BBM_TOOLCHAIN_USE_HOST
+       bool "use host gcc as cross compiler"
+
+config BBM_TOOLCHAIN_CUSTOM
+       bool "specify your toolchain prefix"
+
+config BBM_TOOLCHAIN_IMG_MIPS64R6_EL_N64
+       bool "mips-img-elf (MIPS64R6 LittleEndian n64ABI)"
+
+config BBM_TOOLCHAIN_ARM_EABI
+       bool "arm-none-eabi"
+
+endchoice
+
+
+config BBM_TOOLCHAIN_CROSS_CC
+       string "CC"
+       default "$(CROSS_PREFIX)cc"
+
+config BBM_TOOLCHAIN_CROSS_CXX
+       string "CXX"
+       default "$(CROSS_PREFIX)c++"
+
+config BBM_TOOLCHAIN_CROSS_AR
+       string "AR"
+       default "$(CROSS_PREFIX)ar"
+
+config BBM_TOOLCHAIN_CROSS_LD
+       string "LD"
+       default "$(CROSS_PREFIX)ld"
+
+config BBM_TOOLCHAIN_CROSS_AS
+       string "AS"
+       default "$(CROSS_PREFIX)as"
+
+config BBM_TOOLCHAIN_ARCH_FLAGS
+       default BBM_TOOLCHAIN_ARCH_FLAGS_CUSTOM
+
+config BBM_TOOLCHAIN_ABI_FLAGS
+       default BBM_TOOLCHAIN_ABI_FLAGS_CUSTOM
+
+
+if BBM_TOOLCHAIN_CUSTOM
+
+config CROSS_PREFIX
+       string
+       default CROSS_PREFIX_CUSTOM
+
+config CROSS_PREFIX_CUSTOM
+       string "CROSS_PREFIX (toolchain prefix)"
+       default ""
+
+config BBM_TOOLCHAIN_ARCH_FLAGS_CUSTOM
+       string "CFLAGS for ARCH (like -march=i7)"
+       default ""
+
+config BBM_TOOLCHAIN_ABI_FLAGS_CUSTOM
+       string "CFLAGS for ABI (like -meabi)"
+       default ""
+
+config BBM_TOOLCHAIN_HAS_STDCXX
+       bool "stdc++ support"
+       default n
+
+config BBM_TOOLCHAIN_HAS_LIBC
+       bool "Toolchain has LIBC support?"
+       default y
+
+endif
+
+
+if BBM_TOOLCHAIN_USE_HOST
+
+config BBM_TOOLCHAIN_ARCH_FLAGS_CUSTOM
+       string "CFLAGS for ARCH (like -march=i7)"
+       default ""
+
+config BBM_TOOLCHAIN_ABI_FLAGS_CUSTOM
+       string "CFLAGS for ABI (like -meabi)"
+       default ""
+
+config BBM_TOOLCHAIN_HAS_STDCXX
+       default n
+
+config BBM_TOOLCHAIN_HAS_LIBC
+       bool "Toolchain has LIBC support?"
+       default y
+
+endif
+
+
+source "toolchain/mips-img-elf.conf"
+source "toolchain/arm-none-eabi.conf"
+

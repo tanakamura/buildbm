@@ -1,0 +1,6 @@
+config BBM_PACKAGE_PYTHON
+       bool "Python"
+       default n
+       help
+        enables Py_* function in your system
+
