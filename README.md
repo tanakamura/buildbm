@@ -1,5 +1,9 @@
 Buildbm is a simple package manager for BareMetal system.
+
+
 This project is inspired by Buildroot.
+
+https://buildroot.org/
 
 
 How to Build
@@ -7,17 +11,17 @@ How to Build
 
 Install Kconfiglib and SCons
 
- $ pip install kconfiglib scons
+    $ pip install kconfiglib scons
 
 Create your toolchain config to toolchain directory.
 And modify toolchain/Kconfig to use your toolchain.
 
 Customize system config for your convinient.
- $ menuconfig
+    $ menuconfig
 (menuconfig command is included in Kconfiglib)
 
 Go!
- $ scons
+    $ scons
 
 This SConstruct generates 'build/<target>/libbuildbm.a'.
 
@@ -38,6 +42,7 @@ and add the 'BMconfig' path to packages/BMconfig.
 
 'BMconfig' defines config flags for your package,
 BMconfig syntax is same as Linux Kconfig
+
 https://www.kernel.org/doc/Documentation/kbuild/kconfig-language.txt
 
 
