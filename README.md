@@ -38,7 +38,7 @@ libbuildbm.a depends on libc, but libbuildbm.a does not include libc.
 Add your favorite package to Buildbm
 ====================================
 
-Build package directory in packages.
+Create package directory in packages. (like ./packages/foobar-pkg/)
 
 Add BMconfig and package.py in your package direcotry.
 and add the 'BMconfig' path to packages/BMconfig.
