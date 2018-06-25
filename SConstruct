@@ -148,6 +148,6 @@ def main():
             c_source_list.append(path_from_root)
 
     objects = build_env.Object(c_source_list)
-    build_env.StaticLibrary('buildbm', objects)
+    build_env.StaticLibrary(os.path.join('output', target_arch, 'buildbm'), objects)
 
 main()

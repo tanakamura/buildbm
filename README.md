@@ -26,7 +26,7 @@ Go!
 
     $ scons
 
-This SConstruct generates 'build/&lt;target&gt;/libbuildbm.a'.
+This SConstruct generates 'output/&lt;target&gt;/libbuildbm.a'.
 
 Link 'libbuildbm.a' to your baremetal system, and enjoy!
 
