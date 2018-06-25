@@ -1,6 +1,9 @@
 if config_get_bool("BBM_PACKAGE_ZLIB"):
     PACKAGE_NAME="zlib"
     PACKAGE_URL="http://prdownloads.sourceforge.net/libpng/zlib-1.2.11.tar.gz"
+
+    VERSION='1.2.11'
+
     SOURCES=[
         "adler32.c",
         "compress.c",

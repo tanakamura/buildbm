@@ -17,49 +17,53 @@ config BBM_TOOLCHAIN_ARM_EABI
 
 endchoice
 
+config BBM_ARCH_NAME
+       string
 
 config BBM_TOOLCHAIN_CROSS_CC
        string "CC"
-       default "$(CROSS_PREFIX)cc"
+       default "$(BBM_CROSS_PREFIX)gcc"
 
 config BBM_TOOLCHAIN_CROSS_CXX
        string "CXX"
-       default "$(CROSS_PREFIX)c++"
+       default "$(BBM_CROSS_PREFIX)g++"
 
 config BBM_TOOLCHAIN_CROSS_AR
        string "AR"
-       default "$(CROSS_PREFIX)ar"
+       default "$(BBM_CROSS_PREFIX)ar"
 
 config BBM_TOOLCHAIN_CROSS_LD
        string "LD"
-       default "$(CROSS_PREFIX)ld"
+       default "$(BBM_CROSS_PREFIX)ld"
 
 config BBM_TOOLCHAIN_CROSS_AS
        string "AS"
-       default "$(CROSS_PREFIX)as"
+       default "$(BBM_CROSS_PREFIX)as"
+
+config BBM_TOOLCHAIN_OPTIMIZATION_FLAG
+       string "optimization flag for CC"
+       default "-Os"
 
 config BBM_TOOLCHAIN_ARCH_FLAGS
-       default BBM_TOOLCHAIN_ARCH_FLAGS_CUSTOM
+       string
 
 config BBM_TOOLCHAIN_ABI_FLAGS
-       default BBM_TOOLCHAIN_ABI_FLAGS_CUSTOM
+       string
 
+config BBM_CROSS_PREFIX
+       string
 
 if BBM_TOOLCHAIN_CUSTOM
 
-config CROSS_PREFIX
-       string
-       default CROSS_PREFIX_CUSTOM
-
-config CROSS_PREFIX_CUSTOM
-       string "CROSS_PREFIX (toolchain prefix)"
+config BBM_CROSS_PREFIX
+       string "BBM_CROSS_PREFIX (toolchain prefix)"
        default ""
 
-config BBM_TOOLCHAIN_ARCH_FLAGS_CUSTOM
+config BBM_TOOLCHAIN_ARCH_FLAGS
        string "CFLAGS for ARCH (like -march=i7)"
        default ""
 
-config BBM_TOOLCHAIN_ABI_FLAGS_CUSTOM
+config BBM_TOOLCHAIN_ABI_FLAGS_
        string "CFLAGS for ABI (like -meabi)"
        default ""
 
@@ -75,6 +79,10 @@ endif
 
 
 if BBM_TOOLCHAIN_USE_HOST
+
+config BBM_CROSS_PREFIX
+       string
+       default ""
 
 config BBM_TOOLCHAIN_ARCH_FLAGS_CUSTOM
        string "CFLAGS for ARCH (like -march=i7)"

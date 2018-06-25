@@ -1,4 +1,4 @@
 config BBM_PACKAGE_ZLIB
        bool "zlib"
-       default n
+       default y
        
