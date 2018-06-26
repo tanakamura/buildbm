@@ -36,6 +36,9 @@ def main():
         out_str = ""
         i = 0
 
+        if in_str == None:
+            return ""
+
         while (i < len(in_str)) :
             if in_str[i] == '$' and in_str[i+1] == '(':
                 i += 2
@@ -96,10 +99,16 @@ def main():
     ld = config_get_str('BBM_TOOLCHAIN_CROSS_LD')
     ar = config_get_str('BBM_TOOLCHAIN_CROSS_AR')
 
+    cflags = (config_get_str('BBM_TOOLCHAIN_OPTIMIZATION_FLAG') + " " +
+              config_get_str('BBM_TOOLCHAIN_ARCH_FLAGS') + " " +
+              config_get_str('BBM_TOOLCHAIN_ABI_FLAGS') + " ")
+
     build_env = Environment(
         ENV=os.environ,
         CC=cc,
+        CFLAGS=cflags,
         CXX=cxx,
+        CXXFLAGS=cflags,
         AS=asm,
         AR=ar,
         LD=ld
@@ -110,8 +119,8 @@ def main():
     download_env.Decider('timestamp-match')
 
     c_source_list = []
-    if 'BBM_TARGET_ARCH' in kconf.syms:
-        target_arch = config_get_str('BBM_TARGET_ARCH')
+    if 'BBM_ARCH_NAME' in kconf.syms:
+        target_arch = config_get_str('BBM_ARCH_NAME')
     else:
         import platform
         target_arch = platform.machine()
@@ -119,9 +128,8 @@ def main():
     for pkg_name in build_packages:
         pkg_info = build_packages[pkg_name]
 
-        pkg_info.output_dir = "output/%s/%s_%s"%(target_arch,
-                                                 pkg_info.pkg_env['PACKAGE_NAME'],
-                                                 pkg_info.pkg_env['VERSION'])
+        pkg_info.output_dir = "output/%s_%s"%(pkg_info.pkg_env['PACKAGE_NAME'],
+                                              pkg_info.pkg_env['VERSION'])
 
         url = pkg_info.pkg_env['PACKAGE_URL']
         dl_file = os.path.basename(url)
@@ -140,6 +148,15 @@ def main():
                 ['tar --strip-component=1  -C %s -zxf $SOURCE'%(pkg_info.output_dir),
                  Touch(extract_dummy)])
 
+        install_header_list = pkg_info.pkg_env['INSTALL_HEADERS']
+        if install_header_list:
+            for h in install_header_list:
+                dest = os.path.join('usr/include', h),
+                src = os.path.join(pkg_info.output_dir, h),
+                Command(dest, src,
+                        Copy("$TARGET", "$SOURCE"))
+                        
+
     for pkg_name in build_packages:
         pkg_info = build_packages[pkg_name]
 
@@ -148,6 +165,6 @@ def main():
             c_source_list.append(path_from_root)
 
     objects = build_env.Object(c_source_list)
-    build_env.StaticLibrary(os.path.join('output', target_arch, 'buildbm'), objects)
+    build_env.StaticLibrary(os.path.join('output', 'buildbm'), objects)
 
 main()

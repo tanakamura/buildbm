@@ -26,7 +26,7 @@ Go!
 
     $ scons
 
-This SConstruct generates 'output/&lt;target&gt;/libbuildbm.a'.
+This SConstruct generates 'output/libbuildbm.a'.
 
 Link 'libbuildbm.a' to your baremetal system, and enjoy!
 
@@ -63,7 +63,7 @@ Follows are description for these variables.
  - PACKAGE_NAME : name of your package. This should be unique in all packages.
  - PACKAGE_URL : The URL of source file
  - INSTALL_HEADERS : header file list to build other package. 
-   The files specifined in this variable are installed to build/&lt;target&gt;/include.
+   The files specifined in this variable are installed to usr/include.
  - VERSION : version
  - SOURCES : c/c++ files to build.
  - DEPENDENCIES : The package list used by this package

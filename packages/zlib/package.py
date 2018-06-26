@@ -23,5 +23,6 @@ if config_get_bool("BBM_PACKAGE_ZLIB"):
     ]
 
     INSTALL_HEADERS=[
-        "zlib.h"
+        "zlib.h",
+        "zconf.h"
     ]

@@ -15,6 +15,9 @@ config BBM_TOOLCHAIN_IMG_MIPS64R6_EL_N64
 config BBM_TOOLCHAIN_ARM_EABI
        bool "arm-none-eabi"
 
+config BBM_TOOLCHAIN_AARCH64
+       bool "aarch64-elf"
+
 endchoice
 
 config BBM_ARCH_NAME
@@ -63,7 +66,7 @@ config BBM_TOOLCHAIN_ARCH_FLAGS
        string "CFLAGS for ARCH (like -march=i7)"
        default ""
 
-config BBM_TOOLCHAIN_ABI_FLAGS_
+config BBM_TOOLCHAIN_ABI_FLAGS
        string "CFLAGS for ABI (like -meabi)"
        default ""
 
@@ -88,7 +91,7 @@ config BBM_TOOLCHAIN_ARCH_FLAGS_CUSTOM
        string "CFLAGS for ARCH (like -march=i7)"
        default ""
 
-config BBM_TOOLCHAIN_ABI_FLAGS_CUSTOM
+config BBM_TOOLCHAIN_ABI_FLAGS
        string "CFLAGS for ABI (like -meabi)"
        default ""
 
@@ -104,4 +107,4 @@ endif
 
 source "toolchain/mips-img-elf.conf"
 source "toolchain/arm-none-eabi.conf"
-
+source "toolchain/aarch64-elf.conf"
